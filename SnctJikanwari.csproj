@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="DefaultJikanwari\Compose_first_v1\1-1.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_first_v1\1-2.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_first_v1\1-3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_first_v1\AS4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_first_v1\IE2.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_first_v1\IE3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_first_v1\IE4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_first_v1\IS3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_first_v1\IS4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_first_v1\IT2.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_first_v1\IT3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_first_v1\IT4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\1-1.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\1-2.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\1-3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\AS4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IE2.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IE3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IE4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IE5.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IN5.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IS2.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IS3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IS4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IS5.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IT2.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IT3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IT4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\versionStart.csv" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AngleSharp" Version="0.14.0" />
+      <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.106.20" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LineApi\LineApi.csproj" />
+    </ItemGroup>
+
+</Project>
