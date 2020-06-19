@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -80,14 +81,18 @@ namespace SnctJikanwari
             var userKadaiResponse = await GetKadai(className);
             if (userKadaiResponse.Count == 0) return "クラスに登録されている課題なし";
 
+            CultureInfo.CurrentCulture = new CultureInfo("ja-JP", false);
             var items = userKadaiResponse.Items;
             var formatItems = items
                 .Select(k => new
                 {
                     Subject = k["Subject"].S,
-                    Info = ReplaceEofToSpace(k["Information"].S)
+                    Info = ReplaceEofToSpace(k["Information"].S),
+                    Deadline = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+                        .AddSeconds(uint.Parse(k["DeadlineTime"].N))
+                        .ToLocalTime()
                 })
-                .Select(k => $"{k.Subject}: {k.Info}");
+                .Select(k => $"{k.Subject}: {k.Info} (締め切り: {k.Deadline:MM/dd HH:mm})");
 
             return string.Join("\n", formatItems);
         }
@@ -119,7 +124,8 @@ namespace SnctJikanwari
             var jikanwariTask = MakeJikanwariTextTask(className);
             var schedule = MakeScheduleTextTask(className);
 
-            return $"{date:MM/dd(ddd)} 時間割\n{await jikanwariTask}\n\n{schedule}\n\n" +
+            CultureInfo.CurrentCulture = new CultureInfo("ja-JP", false);
+            return $"{date:MM/dd(ddd)} 時間割\n{await jikanwariTask}\n\n行事予定\n{schedule}\n\n" +
                    $"{date:MM/dd(ddd)} ~ {lim:MM/dd(ddd)} {className}に登録された課題\n{await kadaiTask}";
         }
 
