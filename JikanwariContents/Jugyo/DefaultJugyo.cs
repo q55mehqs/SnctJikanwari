@@ -7,6 +7,15 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
     public class DefaultJugyo : IJugyo
     {
         public int Time { get; }
+        public string TimeString => Time switch
+        {
+            1 => "8:45-10:15",
+            2 => "10:20-11:50",
+            3 => "13:10-14:40",
+            4 => "14:50-16:20",
+            5 => "16:30-18:00",
+            _ => ""
+        };
         public string Subject { get; }
         public string ClassName { get; }
         public string Teacher { get; }
@@ -77,7 +86,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
 
         public override string ToString()
         {
-            return $"{Time}講 - {Subject} ({Teacher}) / {Other}";
+            return $"{TimeString}\n{Time}講 - {Subject} ({Teacher}) / {Other}";
         }
     }
 }
