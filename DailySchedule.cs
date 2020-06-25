@@ -49,7 +49,9 @@ namespace SnctJikanwari
         private static async Task<QueryResponse> GetKadai(string className)
         {
             var now = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            var limitDate = DateTime.Now.Hour <= 16 ? DateTime.Today.AddDays(1) : DateTime.Today.AddDays(2);
+
+            // TODO 要検証
+            var limitDate = DateTime.Today.AddDays(1);
             limitDate = SkipSatSun(limitDate);
             var limitTime = limitDate - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
@@ -92,14 +94,14 @@ namespace SnctJikanwari
                         .AddSeconds(uint.Parse(k["DeadlineTime"].N))
                         .ToLocalTime()
                 })
-                .Select(k => $"{k.Subject}: {k.Info} (締め切り: {k.Deadline:MM/dd HH:mm})");
+                .Select(k => $"{k.Subject}: {k.Info} (~{k.Deadline:HH:mm})");
 
             return string.Join("\n", formatItems);
         }
 
         private static async Task<string> MakeJikanwariTextTask(string className)
         {
-            var date = DateTime.Now.Hour <= 16 ? DateTime.Today : DateTime.Today.AddDays(1);
+            var date = DateTime.Now.Hour < 16 ? DateTime.Today : DateTime.Today.AddDays(1);
             date = SkipSatSun(date);
 
             var (classJikanwari, _) = await JikanwariManager.GetJikanwari(className, date);
@@ -109,16 +111,19 @@ namespace SnctJikanwari
         private static string MakeScheduleTextTask(string className)
         {
             var grade = GetGrade(className);
-            var gradeSchedule = Schedule.GetTodaySchedules(grade);
-            return string.Join("\n", gradeSchedule.Select(s => s.SimpleText(grade)));
+            var date = DateTime.Now.Hour < 16 ? DateTime.Today : DateTime.Today.AddDays(1);
+            date = SkipSatSun(date);
+
+            var gradeSchedule = Schedule.GetTodaySchedules(grade, date).ToList();
+            return gradeSchedule.Count == 0
+                ? "予定なし"
+                : string.Join("\n", gradeSchedule.Select(s => s.SimpleText(grade)));
         }
 
         private static async Task<string> GetClassMessage(string className)
         {
-            var date = DateTime.Now.Hour <= 16 ? DateTime.Today : DateTime.Today.AddDays(1);
+            var date = DateTime.Now.Hour < 16 ? DateTime.Today : DateTime.Today.AddDays(1);
             date = SkipSatSun(date);
-            var lim = DateTime.Now.Hour <= 16 ? DateTime.Today.AddDays(1) : DateTime.Today.AddDays(2);
-            lim = SkipSatSun(lim);
 
             var kadaiTask = MakeKadaiTextTask(className);
             var jikanwariTask = MakeJikanwariTextTask(className);
@@ -126,7 +131,7 @@ namespace SnctJikanwari
 
             CultureInfo.CurrentCulture = new CultureInfo("ja-JP", false);
             return $"{date:MM/dd(ddd)} 時間割\n{await jikanwariTask}\n\n行事予定\n{schedule}\n\n" +
-                   $"{date:MM/dd(ddd)} ~ {lim:MM/dd(ddd)} {className}に登録された課題\n{await kadaiTask}";
+                   $"{date:MM/dd} 提出の{className}課題\n{await kadaiTask}";
         }
 
         private static int GetGrade(string className)
@@ -150,14 +155,22 @@ namespace SnctJikanwari
             var hourUsers = hourUsersResponse.Items;
 
             var dic = new Dictionary<string, List<string>>();
-            foreach (var user in hourUsers.Where(u => u.ContainsKey("Class")))
-            {
-                if (!dic.ContainsKey(user["Class"].S))
+            foreach (var user in hourUsers.Where(u => u.ContainsKey("Class"))
+                .Select(u => new
                 {
-                    dic.Add(user["Class"].S, new List<string>());
-                }
+                    UserId = u["UserId"].S,
+                    UserClasses = u["Class"].SS
+                }))
+            {
+                foreach (var userClass in user.UserClasses)
+                {
+                    if (!dic.ContainsKey(userClass))
+                    {
+                        dic.Add(userClass, new List<string>());
+                    }
 
-                dic[user["Class"].S].Add(user["UserId"].S);
+                    dic[userClass].Add(user.UserId);
+                }
             }
 
             var classMessages = dic.Keys.ToDictionary(cln => cln, GetClassMessage);
