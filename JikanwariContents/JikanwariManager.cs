@@ -72,7 +72,7 @@ namespace SnctJikanwari.JikanwariContents
         {
             return jikanwari.Count == 0
                 ? "ASクラスの授業はありません"
-                : string.Join("\n", jikanwari.Select(jugyo => jugyo.ToString()));
+                : string.Join("\n\n", jikanwari.Select(jugyo => jugyo.ToString()));
         }
 
         public static string ClassHenkoText(IReadOnlyList<HenkoJugyo> henkos)
