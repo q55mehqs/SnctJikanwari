@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace SnctJikanwari.JikanwariContents.Jugyo
@@ -98,7 +97,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
 
         public string HenkoString()
         {
-            return $"{HenkoStatus} - {Date.ToString("MM/dd (ddd)", new CultureInfo("ja-JP"))} " +
+            return $"{HenkoStatus} - {Date:MM/dd (ddd)} " +
                    $"{Time}講 {Subject}\n...あと{(Date - DateTime.Today).Days}日";
         }
     }
