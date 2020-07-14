@@ -29,7 +29,7 @@ namespace SnctJikanwari.JikanwariContents
 
             foreach (var henko in dailyHenko)
             {
-                if (isDefaultEmpty)
+                if (isDefaultEmpty || henko.Time - 1 >= dailyJikanwari.Count)
                 {
                     dailyJikanwari.Add(henko);
                 }
