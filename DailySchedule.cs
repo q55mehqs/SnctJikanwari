@@ -89,7 +89,7 @@ namespace SnctJikanwari
                 {
                     Subject = k["Subject"].S,
                     Info = ReplaceEofToSpace(k["Information"].S),
-                    Deadline = uint.Parse(k["DeadlineTime"].N).ToLocalDateTime()
+                    Deadline = k["DeadlineTime"].N.ToLocalDateTime()
                 })
                 .Select(k => $"{k.Subject}: {k.Info} (~{k.Deadline:HH:mm})");
 
