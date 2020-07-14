@@ -48,12 +48,11 @@ namespace SnctJikanwari
 
         private static async Task<QueryResponse> GetKadai(string className)
         {
-            var now = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var now = DateTime.Now;
 
             // TODO 要検証
             var limitDate = DateTime.Today.AddDays(1);
             limitDate = SkipSatSun(limitDate);
-            var limitTime = limitDate - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
             var req = new QueryRequest
             {
@@ -64,8 +63,8 @@ namespace SnctJikanwari
                 ExpressionAttributeValues = new Dictionary<string, AttributeValue>
                 {
                     {":c", new AttributeValue {S = className}},
-                    {":now", new AttributeValue {S = ((uint) now.TotalSeconds).ToString()}},
-                    {":lim", new AttributeValue {S = ((uint) limitTime.TotalSeconds).ToString()}}
+                    {":now", new AttributeValue {S = now.ToTimeStamp().ToString()}},
+                    {":lim", new AttributeValue {S = limitDate.ToTimeStamp().ToString()}}
                 }
             };
 
@@ -90,9 +89,7 @@ namespace SnctJikanwari
                 {
                     Subject = k["Subject"].S,
                     Info = ReplaceEofToSpace(k["Information"].S),
-                    Deadline = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
-                        .AddSeconds(uint.Parse(k["DeadlineTime"].N))
-                        .ToLocalTime()
+                    Deadline = uint.Parse(k["DeadlineTime"].N).ToLocalDateTime()
                 })
                 .Select(k => $"{k.Subject}: {k.Info} (~{k.Deadline:HH:mm})");
 
