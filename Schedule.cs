@@ -49,8 +49,10 @@ namespace SnctJikanwari
             yield return new Schedule(new DateTime(2020, 9, 28), "前期期末試験 後半", enDate: new DateTime(2020, 9, 30));
             yield return new Schedule(new DateTime(2020, 10, 1), "開校記念日（学生休業日）");
             yield return new Schedule(new DateTime(2020, 10, 2), "後期授業開始");
-            yield return new Schedule(new DateTime(2020, 10, 10), "プロコン本選（苫小牧）", enDate: new DateTime(2020, 10, 11));
+            yield return new Schedule(new DateTime(2020, 10, 10), "プロコン本選（オンライン）", enDate: new DateTime(2020, 10, 11));
+            yield return new Schedule(new DateTime(2020, 10, 18), "ロボコン東北地区大会（オンライン）");
             yield return new Schedule(new DateTime(2020, 10, 23), "地区大会（ラグビー・鶴岡）", enDate: new DateTime(2020, 10, 27));
+            yield return new Schedule(new DateTime(2020, 10, 24), "学生健康診断");
             yield return new Schedule(new DateTime(2020, 10, 30), "1 授業、2~ 高専祭準備");
             yield return new Schedule(new DateTime(2020, 10, 31), "高専祭", enDate: new DateTime(2020, 11, 1));
             yield return new Schedule(new DateTime(2020, 11, 2), "学生休業日（高専祭振替）");
