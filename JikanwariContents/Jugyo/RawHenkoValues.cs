@@ -60,7 +60,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
                     };
                 });
 
-            return items.ToList();
+            return items;
         }
     }
 }
