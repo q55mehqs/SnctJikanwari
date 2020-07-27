@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace SnctJikanwari.JikanwariContents.Jugyo
@@ -31,12 +32,13 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
             //     strDate = "12月4日"
             var strDate = henkoValues.StatusAndDate.TextContent.Substring(2,
                 henkoValues.StatusAndDate.TextContent.IndexOf("(", StringComparison.CurrentCulture) - 2);
-            Date = DateTime.ParseExact(strDate, "M月d日", null);
+            Date = DateTime.ParseExact(strDate, "M月d日", new CultureInfo("ja-JP"));
             if (DateTime.Today.Month > 4 && Date.Month <= 3)
             {
                 Date = Date.AddYears(1);
             }
 
+            // FIXME 要変更？
             Time = int.Parse(henkoValues.RawTime.Substring(0, 1));
             Subject = henkoValues.Subject;
             ClassName = henkoValues.ClassName;
@@ -72,9 +74,10 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
         public static IEnumerable<HenkoJugyo> GetDailyClassHenko(string className, DateTime date,
             List<HenkoJugyo>? classHenkos = null, List<HenkoJugyo>? allClassHenkos = null)
         {
+            CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
             classHenkos ??= GetClassHenko(className, allClassHenkos);
             var classDailyHenkos = new List<HenkoJugyo>();
-            classDailyHenkos.AddRange(classHenkos.FindAll(h => h.Date == date));
+            classDailyHenkos.AddRange(classHenkos.FindAll(h => h.Date.Date == date.Date));
 
             return classDailyHenkos;
         }
