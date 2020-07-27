@@ -36,23 +36,12 @@ namespace SnctJikanwari
             return await Client.ScanAsync(req);
         }
 
-        private static DateTime SkipSatSun(DateTime date)
-        {
-            return date.DayOfWeek switch
-            {
-                DayOfWeek.Saturday => date.AddDays(2),
-                DayOfWeek.Sunday => date.AddDays(1),
-                _ => date
-            };
-        }
-
         private static async Task<QueryResponse> GetKadai(string className)
         {
             var now = DateTime.Now;
 
             // TODO 要検証
-            var limitDate = DateTime.Today.AddDays(1);
-            limitDate = SkipSatSun(limitDate);
+            var limitDate = DateTime.Today.AddDays(1).SkipHoliday();
 
             var req = new QueryRequest
             {
@@ -99,7 +88,7 @@ namespace SnctJikanwari
         private static async Task<string> MakeJikanwariTextTask(string className)
         {
             var date = DateTime.Now.Hour < 16 ? DateTime.Today : DateTime.Today.AddDays(1);
-            date = SkipSatSun(date);
+            date = date.SkipHoliday();
 
             var (classJikanwari, _) = await JikanwariManager.GetJikanwari(className, date);
             return JikanwariManager.JikanwariText(classJikanwari);
@@ -109,7 +98,7 @@ namespace SnctJikanwari
         {
             var grade = GetGrade(className);
             var date = DateTime.Now.Hour < 16 ? DateTime.Today : DateTime.Today.AddDays(1);
-            date = SkipSatSun(date);
+            date = date.SkipHoliday();
 
             var gradeSchedule = Schedule.GetTodaySchedules(grade, date).ToList();
             return gradeSchedule.Count == 0
@@ -120,7 +109,7 @@ namespace SnctJikanwari
         private static async Task<string> GetClassMessage(string className)
         {
             var date = DateTime.Now.Hour < 16 ? DateTime.Today : DateTime.Today.AddDays(1);
-            date = SkipSatSun(date);
+            date = date.SkipHoliday();
 
             var kadaiTask = MakeKadaiTextTask(className);
             var jikanwariTask = MakeJikanwariTextTask(className);

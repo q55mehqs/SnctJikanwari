@@ -16,6 +16,16 @@ namespace SnctJikanwari
             return ((uint) timeSpan.TotalSeconds).ToString();
         }
 
+        public static DateTime SkipHoliday(this DateTime dateTime)
+        {
+            return dateTime.DayOfWeek switch
+            {
+                DayOfWeek.Saturday => dateTime.AddDays(2),
+                DayOfWeek.Sunday => dateTime.AddDays(1),
+                _ => dateTime
+            };
+        }
+
         public static DateTime ToLocalDateTime(this uint timeStamp)
         {
             return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
