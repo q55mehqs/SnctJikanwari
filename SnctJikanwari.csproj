@@ -35,6 +35,24 @@
       <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IT3.csv" />
       <EmbeddedResource Include="DefaultJikanwari\Remote_v4\IT4.csv" />
       <EmbeddedResource Include="DefaultJikanwari\versionStart.csv" />
+      <None Remove="DefaultJikanwari\Compose_Special_1\IE4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Special_1\IE4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Special_1\IS4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Special_1\IS4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Special_1\IT4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Special_1\IT4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Special_2\IE4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Special_2\IE4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Special_2\IS4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Special_2\IS4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Special_2\IT4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Special_2\IT4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Special_3\IE4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Special_3\IE4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Special_3\IS4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Special_3\IS4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Special_3\IT4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Special_3\IT4.csv" />
     </ItemGroup>
 
     <ItemGroup>
