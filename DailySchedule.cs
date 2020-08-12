@@ -52,8 +52,8 @@ namespace SnctJikanwari
                 ExpressionAttributeValues = new Dictionary<string, AttributeValue>
                 {
                     {":c", new AttributeValue {S = className}},
-                    {":now", new AttributeValue {S = now.ToTimeStamp().ToString()}},
-                    {":lim", new AttributeValue {S = limitDate.ToTimeStamp().ToString()}}
+                    {":now", new AttributeValue {S = now.ToTimeStampString()}},
+                    {":lim", new AttributeValue {S = limitDate.ToTimeStampString()}}
                 }
             };
 
