@@ -91,7 +91,7 @@ namespace SnctJikanwari
             date = date.SkipHoliday();
 
             var (classJikanwari, _) = await JikanwariManager.GetJikanwari(className, date);
-            return JikanwariManager.JikanwariText(classJikanwari);
+            return JikanwariManager.JikanwariText(classJikanwari, className.Contains("AS"));
         }
 
         private static string MakeScheduleTextTask(string className)

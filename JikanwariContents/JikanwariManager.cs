@@ -70,10 +70,11 @@ namespace SnctJikanwari.JikanwariContents
             return raw;
         }
 
-        public static string JikanwariText(IReadOnlyList<IJugyo> jikanwari)
+        public static string JikanwariText(IReadOnlyList<IJugyo> jikanwari, bool isAs)
         {
+            var noneText = isAs ? "ASクラスの授業はこの曜日には開講されていません" : "該当日時に授業は設定されていません";
             return jikanwari.Count == 0
-                ? "ASクラスの授業はありません"
+                ? noneText
                 : string.Join("\n\n", jikanwari.Select(jugyo => jugyo.ToString()));
         }
 
