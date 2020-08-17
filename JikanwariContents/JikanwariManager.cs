@@ -11,10 +11,10 @@ namespace SnctJikanwari.JikanwariContents
     public static class JikanwariManager
     {
         public static async Task<(List<IJugyo>, DayOfWeek)> GetJikanwari(string className, DateTime date, string cache = "",
-            bool useFuture = false)
+            DateTime? callDate = null)
         {
             var rawJikanwariData =
-                string.IsNullOrEmpty(cache) ? await LoadJikanwari(className, useFuture) : cache;
+                string.IsNullOrEmpty(cache) ? await LoadJikanwari(className, callDate) : cache;
             var dailyJikanwari = DefaultJugyo.GetDailyJikanwari(className, date, rawJikanwariData, out var dayOfWeek)?
                 .Cast<IJugyo>().ToList();
 
@@ -42,22 +42,24 @@ namespace SnctJikanwari.JikanwariContents
             return (dailyJikanwari, dayOfWeek);
         }
 
-        private static async Task<string> GetVersionDirectoryAsync(bool useFuture)
+        private static async Task<string> GetVersionDirectoryAsync(DateTime date)
         {
-            var assembly = Assembly.GetExecutingAssembly();
+            var assembly = Assembly.GetEntryAssembly();
             await using var stream =
-                assembly.GetManifestResourceStream("SnctJikanwari.DefaultJikanwari.versionStart.csv");
-            if (stream == null) throw new Exception("version stream cannot open");
+                assembly?.GetManifestResourceStream("SnctJikanwari.DefaultJikanwari.versionStart.csv");
+            if (stream == null) throw new Exception("version steam cannot open");
+            
             using var sr = new StreamReader(stream);
             var text = await sr.ReadToEndAsync();
             var lines = text.Split("\n").Select(t => t.Split(","));
 
-            return (useFuture ? lines.Last() : lines.Last(s => DateTime.Parse(s[0]) <= DateTime.Today))[1];
+            return lines.Last(s => DateTime.Parse(s[0]) <= date)[1];
         }
 
-        public static async Task<string> LoadJikanwari(string className, bool useFuture = false)
+        public static async Task<string> LoadJikanwari(string className, DateTime? nullableDate = null)
         {
-            var dirName = await GetVersionDirectoryAsync(useFuture);
+            var date = nullableDate ?? DateTime.Today;
+            var dirName = await GetVersionDirectoryAsync(date);
             var assembly = Assembly.GetExecutingAssembly();
             await using var stream =
                 assembly.GetManifestResourceStream($"SnctJikanwari.DefaultJikanwari.{dirName}.{className}.csv");
