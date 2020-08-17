@@ -44,9 +44,9 @@ namespace SnctJikanwari.JikanwariContents
 
         private static async Task<string> GetVersionDirectoryAsync(DateTime date)
         {
-            var assembly = Assembly.GetEntryAssembly();
+            var assembly = Assembly.GetExecutingAssembly();
             await using var stream =
-                assembly?.GetManifestResourceStream("SnctJikanwari.DefaultJikanwari.versionStart.csv");
+                assembly.GetManifestResourceStream("SnctJikanwari.DefaultJikanwari.versionStart.csv");
             if (stream == null) throw new Exception("version steam cannot open");
             
             using var sr = new StreamReader(stream);
