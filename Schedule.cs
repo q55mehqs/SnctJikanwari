@@ -37,6 +37,7 @@ namespace SnctJikanwari
 
         private static IEnumerable<Schedule> GetSchedules()
         {
+            // https://www.sendai-nct.ac.jp/sclife/schedule/
             yield return new Schedule(new DateTime(2020, 6, 19), "休業日（開寮のため）", second: "開寮", third: "開寮", fourth: "開寮",
                 fifth: "開寮");
             yield return new Schedule(new DateTime(2020, 6, 20), first: "開寮");
