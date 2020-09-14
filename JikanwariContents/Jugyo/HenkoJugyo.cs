@@ -18,6 +18,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
             3 => "13:10-14:40",
             4 => "14:50-16:20",
             5 => "16:30-18:00",
+            9 => "授業変更の変更校時の形式に異常があるため9講扱いとして表示します\n休講情報: https://www.sendai-nct.ac.jp/sclife/kyuko/ku_hirose/",
             _ => ""
         };
         public string Subject { get; }
