@@ -27,7 +27,7 @@ namespace SnctJikanwari.JikanwariContents
 
             var dailyHenko = HenkoJugyo.GetDailyClassHenko(className, date);
 
-            foreach (var henko in dailyHenko)
+            foreach (var henko in dailyHenko.Where(h => !h.Other.Contains("留学")))
             {
                 if (isDefaultEmpty || henko.Time - 1 >= dailyJikanwari.Count)
                 {
