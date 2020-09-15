@@ -72,7 +72,8 @@ namespace SnctJikanwari.JikanwariContents
 
         public static string JikanwariText(IReadOnlyList<IJugyo> jikanwari, bool isAs)
         {
-            var noneText = isAs ? "ASクラスの授業はこの曜日には開講されていません 所属クラスの時間割も参照ください" : "該当日に授業は設定されていません";
+            var noneText = isAs ? 
+                "ASクラスの授業はこの曜日には開講されていません 所属クラスの時間割も参照ください" : "該当日に授業は設定されていません";
             return jikanwari.Count == 0
                 ? noneText
                 : string.Join("\n\n", jikanwari.Select(jugyo => jugyo.ToString()));
