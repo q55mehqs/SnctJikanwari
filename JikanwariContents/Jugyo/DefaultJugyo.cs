@@ -34,7 +34,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
         private static List<DefaultJugyo> GetDailyJikanwari(string className, string dailyRaw)
         {
             var daily = new List<DefaultJugyo>();
-            var timeDetails = dailyRaw.Split(',');
+            var timeDetails = dailyRaw.Split(',').Where(r => !string.IsNullOrEmpty(r));
             daily.AddRange(timeDetails.Select((tRaw, time) => new DefaultJugyo(time + 1, className, tRaw)));
 
             return daily;
