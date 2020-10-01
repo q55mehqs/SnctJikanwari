@@ -49,18 +49,24 @@ namespace SnctJikanwari
             yield return new Schedule(new DateTime(2020, 9, 23), "前期期末試験 前半", enDate: new DateTime(2020, 9, 25));
             yield return new Schedule(new DateTime(2020, 9, 28), "前期期末試験 後半", enDate: new DateTime(2020, 9, 30));
             yield return new Schedule(new DateTime(2020, 10, 1), "開校記念日（学生休業日）");
-            yield return new Schedule(new DateTime(2020, 10, 2), "後期授業開始");
+            yield return new Schedule(new DateTime(2020, 10, 2), "前期試験答案返却日、クラス写真撮影");
+            yield return new Schedule(new DateTime(2020, 10, 5), "後期授業開始");
+            yield return new Schedule(new DateTime(2020, 10, 8), "（午前）TOEIC IP ※午後は通常授業");
             yield return new Schedule(new DateTime(2020, 10, 10), "プロコン本選（オンライン）", enDate: new DateTime(2020, 10, 11));
+            yield return new Schedule(new DateTime(2020, 10, 12), "(4校時) 避難訓練");
             yield return new Schedule(new DateTime(2020, 10, 18), "ロボコン東北地区大会（オンライン）");
             yield return new Schedule(new DateTime(2020, 10, 23), "地区大会（ラグビー・鶴岡）", enDate: new DateTime(2020, 10, 27));
-            yield return new Schedule(new DateTime(2020, 10, 24), "学生健康診断");
+            yield return new Schedule(new DateTime(2020, 10, 24), "学生健康診断 (1~3年, 4年以上の未受診者対象) 5年 歯科検診");
             yield return new Schedule(new DateTime(2020, 10, 30), "1 授業、2~ 高専祭準備");
-            yield return new Schedule(new DateTime(2020, 10, 31), "高専祭", enDate: new DateTime(2020, 11, 1));
+            yield return new Schedule(new DateTime(2020, 10, 31), "高専体験会", enDate: new DateTime(2020, 11, 1));
             yield return new Schedule(new DateTime(2020, 11, 2), "学生休業日（高専祭振替）");
             yield return new Schedule(new DateTime(2020, 11, 4), "月曜授業", chWeek: DayOfWeek.Monday);
             yield return new Schedule(new DateTime(2020, 11, 10), fourth: "研修旅行", enDate: new DateTime(2020, 11, 13));
             yield return new Schedule(new DateTime(2020, 11, 14), fourth: "予備日（研修旅行）");
             yield return new Schedule(new DateTime(2020, 11, 16), "学生会立会演説会（4校）");
+            yield return new Schedule(new DateTime(2020, 11, 19), "学生インフルエンザ予防接種（希望者）");
+            yield return new Schedule(new DateTime(2020, 11, 26), "学生インフルエンザ予防接種（希望者）");
+            yield return new Schedule(new DateTime(2020, 11, 28), "東北地区高専専攻科シンポジウム（オンライン開催）");
             yield return new Schedule(new DateTime(2020, 11, 29), "ロボコン全国大会");
             yield return new Schedule(new DateTime(2020, 12, 1), first: "後期中間試験", second: "後期中間試験", third: "後期中間試験",
                 enDate: new DateTime(2020, 12, 3));
