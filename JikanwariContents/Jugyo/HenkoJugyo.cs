@@ -13,11 +13,11 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
 
         public string TimeString => Time switch
         {
-            1 => "8:45-10:15",
-            2 => "10:20-11:50",
-            3 => "13:10-14:40",
-            4 => "14:50-16:20",
-            5 => "16:30-18:00",
+            1 => "8:50-10:20",
+            2 => "10:30-12:00",
+            3 => "13:20-14:50",
+            4 => "15:00-16:30",
+            5 => "16:40-18:10",
             9 => "授業変更の変更校時の形式に異常があるため9講扱いとして表示します\n休講情報: https://www.sendai-nct.ac.jp/sclife/kyuko/ku_hirose/",
             _ => ""
         };

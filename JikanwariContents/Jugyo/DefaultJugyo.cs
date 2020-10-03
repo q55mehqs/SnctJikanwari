@@ -9,11 +9,11 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
         public int Time { get; }
         public string TimeString => Time switch
         {
-            1 => "8:45-10:15",
-            2 => "10:20-11:50",
-            3 => "13:10-14:40",
-            4 => "14:50-16:20",
-            5 => "16:30-18:00",
+            1 => "8:50-10:20",
+            2 => "10:30-12:00",
+            3 => "13:20-14:50",
+            4 => "15:00-16:30",
+            5 => "16:40-18:10",
             _ => ""
         };
         public string Subject { get; }
