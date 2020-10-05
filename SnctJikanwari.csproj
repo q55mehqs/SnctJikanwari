@@ -69,6 +69,12 @@
       <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v1\IS4.csv" />
       <None Remove="DefaultJikanwari\Compose_Second_v1\IT4.csv" />
       <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v1\IT4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v1\IE3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v1\IE3.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v1\IT3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v1\IT3.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v1\IS3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v1\IS3.csv" />
     </ItemGroup>
 
     <ItemGroup>
