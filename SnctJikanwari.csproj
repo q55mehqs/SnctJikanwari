@@ -87,6 +87,8 @@
       <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v1\IS2.csv" />
       <None Remove="DefaultJikanwari\Compose_Second_v1\IT2.csv" />
       <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v1\IT2.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v1\AS4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v1\AS4.csv" />
     </ItemGroup>
 
     <ItemGroup>
