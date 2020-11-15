@@ -26,7 +26,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
         public string Teacher { get; }
         public string Other { get; }
 
-        private HenkoJugyo(RawHenkoValues henkoValues)
+        public HenkoJugyo(RawHenkoValues henkoValues)
         {
             HenkoStatus = henkoValues.StatusAndDate.Children[0].TextContent;
             // ex) values.StatusAndDate.TextContent = "変更12月4日(水)"
@@ -39,7 +39,6 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
                 Date = Date.AddYears(1);
             }
 
-            // FIXME 要変更？
             Time = int.Parse(henkoValues.RawTime.Substring(0, 1));
             Subject = henkoValues.Subject;
             ClassName = henkoValues.ClassName;
@@ -49,12 +48,8 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
 
         public static List<HenkoJugyo> GetAllClassHenko()
         {
-            var henkos = new List<HenkoJugyo>();
             var rawHenkos = RawHenkoValues.GetParsedHtml();
-
-            henkos.AddRange(rawHenkos.Select(rawHenko => new HenkoJugyo(rawHenko)));
-
-            return henkos;
+            return rawHenkos.Select(rawHenko => new HenkoJugyo(rawHenko)).Where(h => h.Date >= DateTime.Today).ToList();
         }
 
         public static List<HenkoJugyo> GetClassHenko(string className, List<HenkoJugyo>? allClassHenkos = null)
@@ -69,7 +64,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
         public static List<HenkoJugyo> GetDailyHenko(DateTime date)
         {
             var henkos = GetAllClassHenko();
-            return henkos.FindAll(h => h.Date == date);
+            return henkos.FindAll(h => h.Date.Date == date);
         }
 
         public static IEnumerable<HenkoJugyo> GetDailyClassHenko(string className, DateTime date,
