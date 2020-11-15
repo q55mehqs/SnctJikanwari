@@ -8,7 +8,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
     public class HenkoJugyo : IJugyo
     {
         private string HenkoStatus { get; }
-        private DateTime Date { get; }
+        public DateTime Date { get; }
         public int Time { get; }
 
         public string TimeString => Time switch
