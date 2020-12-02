@@ -96,8 +96,4 @@
       <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.106.20" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\LineApi\LineApi.csproj" />
-    </ItemGroup>
-
 </Project>

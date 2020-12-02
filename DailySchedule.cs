@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
-using LineApi;
-using LineApi.ResponseObjects.MessageObject;
 using SnctJikanwari.JikanwariContents;
 
 namespace SnctJikanwari
@@ -133,53 +131,6 @@ namespace SnctJikanwari
             var numRe = new Regex(@"\d");
             var numMatch = numRe.Match(otherM.Value);
             return int.Parse(numMatch.Value);
-        }
-
-        public static async Task DailyScheduleTask()
-        {
-            var hourUsersResponse = await GetHourUsers();
-            var hourUsers = hourUsersResponse.Items;
-
-            var dic = new Dictionary<string, List<string>>();
-            foreach (var user in hourUsers.Where(u => u.ContainsKey("Class"))
-                .Select(u => new
-                {
-                    UserId = u["UserId"].S,
-                    UserClasses = u["Class"].SS
-                }))
-            {
-                foreach (var userClass in user.UserClasses)
-                {
-                    if (!dic.ContainsKey(userClass))
-                    {
-                        dic.Add(userClass, new List<string>());
-                    }
-
-                    dic[userClass].Add(user.UserId);
-                }
-            }
-
-            var classMessages = dic.Keys.ToDictionary(cln => cln, GetClassMessage);
-
-            var tasks = new List<Task>();
-            foreach (var (className, users) in dic)
-            {
-                var message = await classMessages[className];
-                var lineMessage = new[] {new TextMessage(message)};
-                if (users.Any(u => u.StartsWith("U")))
-                {
-                    tasks.Add(LineManager.Multicast(users.Where(u => u.StartsWith("U")), lineMessage));
-                }
-
-                tasks.AddRange(users.Where(u => u.StartsWith("C")).Select(u => LineManager.Push(u, lineMessage)));
-            }
-
-            Task.WaitAll(tasks.ToArray());
-        }
-
-        public static async Task<TextMessage> GetMessage(string className)
-        {
-            return new TextMessage(await GetClassMessage(className));
         }
     }
 }
