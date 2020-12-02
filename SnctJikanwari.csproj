@@ -89,6 +89,32 @@
       <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v1\IT2.csv" />
       <None Remove="DefaultJikanwari\Compose_Second_v1\AS4.csv" />
       <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v1\AS4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\1-1.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\1-1.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\1-2.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\1-2.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\1-3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\1-3.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\AS4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\AS4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\IE2.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\IE2.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\IE3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\IE3.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\IE4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\IE4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\IS2.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\IS2.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\IS3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\IS3.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\IS4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\IS4.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\IT2.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\IT2.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\IT3.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\IT3.csv" />
+      <None Remove="DefaultJikanwari\Compose_Second_v2\IT4.csv" />
+      <EmbeddedResource Include="DefaultJikanwari\Compose_Second_v2\IT4.csv" />
     </ItemGroup>
 
     <ItemGroup>
