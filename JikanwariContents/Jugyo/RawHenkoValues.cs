@@ -10,7 +10,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
     public class RawHenkoValues
     {
         public IElement StatusAndDate;
-        public string RawTime;
+        public string TimetableNumber;
         public string ClassName;
         public string Subject;
         public string Teacher;
@@ -19,7 +19,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
         private RawHenkoValues()
         {
             StatusAndDate = null!;
-            RawTime = string.Empty;
+            TimetableNumber = string.Empty;
             ClassName = string.Empty;
             Subject = string.Empty;
             Teacher = string.Empty;
@@ -46,7 +46,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
                     var statusAndDate = data[0];
                     var className = data[1].TextContent;
                     var rawTime = data[2].TextContent;
-                    var time = string.IsNullOrEmpty(rawTime) ? "9," : rawTime;
+                    var time = string.IsNullOrEmpty(rawTime) ? "" : rawTime;
                     var timeRe = new Regex("[1-9]校時|[1-9],");
                     var timeMatch = timeRe.Matches(time);
                     var numRe = new Regex("[0-9]");
@@ -58,7 +58,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
                     return matchNumbers.Select(t => new RawHenkoValues
                     {
                         StatusAndDate = statusAndDate,
-                        RawTime = t,
+                        TimetableNumber = t,
                         ClassName = className,
                         Subject = subject,
                         Teacher = teacher,

@@ -21,6 +21,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
             9 => "授業変更の変更校時の形式に異常があるため9講扱いとして表示します\n休講情報: https://www.sendai-nct.ac.jp/sclife/kyuko/ku_hirose/",
             _ => ""
         };
+
         public string Subject { get; }
         public string ClassName { get; }
         public string Teacher { get; }
@@ -39,7 +40,7 @@ namespace SnctJikanwari.JikanwariContents.Jugyo
                 Date = Date.AddYears(1);
             }
 
-            Time = int.Parse(henkoValues.RawTime.Substring(0, 1));
+            Time = int.Parse(henkoValues.TimetableNumber.Substring(0, 1));
             Subject = henkoValues.Subject;
             ClassName = henkoValues.ClassName;
             Teacher = henkoValues.Teacher == "" ? "__" : henkoValues.Teacher;
